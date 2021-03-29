@@ -1,13 +1,100 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul {
+  list-style: none;
+}
+
+svg {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.reminders-container {
+  margin: 0 auto;
+  width: 800px;
+  max-width: 100vw;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.reminders-list {
+  padding: 25px 20px 10px;
+  background-color: #27303f;
+  min-height: 500px;
+  position: relative;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.reminders-list ul {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.reminders-list ul li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.reminders-list button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.reminders {
+  padding: 25px 20px 10px;
+  background-color: #fff;
+  min-height: 500px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.reminders-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.reminders-header svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+}
+
+.reminders ul li {
+  margin-bottom: 10px;
 }
