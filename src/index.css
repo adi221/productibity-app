@@ -38,16 +38,17 @@ a {
 
 .reminders-container {
   margin: 0 auto;
-  width: 800px;
+  width: 700px;
   max-width: 100vw;
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 220px 1fr;
   align-items: center;
   border-radius: 10px;
 }
 
+/* -----SIDE-LIST------ */
 .reminders-list {
-  padding: 25px 20px 10px;
+  padding: 25px 0;
   background-color: #27303f;
   min-height: 500px;
   position: relative;
@@ -58,11 +59,13 @@ a {
 .reminders-list ul {
   color: #fff;
   margin-top: 20px;
+  width: 100%;
 }
 
 .reminders-list ul li {
   margin-bottom: 10px;
   cursor: pointer;
+  padding: 0 20px;
 }
 
 .reminders-list button {
@@ -71,10 +74,50 @@ a {
   left: 20px;
   color: #fff;
   cursor: pointer;
+  outline: none;
 }
 
+/* Add New List Form */
+.new-list {
+  width: 100%;
+  background-color: #364152;
+  position: relative;
+}
+
+.new-list input {
+  background-color: #364152;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  color: #bcece0;
+  font-size: 14px;
+  width: 100%;
+}
+
+.new-list input::placeholder {
+  color: #888;
+}
+
+.new-list input:focus-within {
+  border: 1px solid #bcece0;
+}
+
+.new-list__button {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-list__button svg {
+  fill: #bcece0;
+  font-size: 20px;
+}
+
+/* ----- REMINDERS----- */
 .reminders {
-  padding: 25px 20px 10px;
+  padding: 25px 40px 10px;
   background-color: #fff;
   min-height: 500px;
   border-top-right-radius: 10px;
@@ -95,6 +138,42 @@ a {
   width: 25px;
 }
 
+.reminders ul {
+  width: 100%;
+}
+
 .reminders ul li {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  text-transform: capitalize;
+}
+
+.reminders ul li svg {
+  color: #666;
+}
+
+h4 {
+  color: rgb(88, 88, 88);
+}
+
+/* Add New Reminder Form */
+.new-reminder {
+  width: 100%;
+  margin-left: -5px;
+}
+
+.new-reminder input {
+  width: 100%;
+  outline: none;
+  border: 1px solid transparent;
+  padding: 10px 5px;
+  color: #888;
+  font-size: 14px;
+}
+
+.new-reminder input:focus-within {
+  border: 1px solid #bcece0;
 }
