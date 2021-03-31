@@ -10,26 +10,30 @@ const Reminders = ({
   addReminderClicked,
   newReminderName,
   changeName,
+  deleteList,
   removeReminder,
 }) => {
   return (
     <main className='reminders'>
       <div className='reminders-header'>
         <h1>{name === 'All' || !name ? 'Reminders' : name}</h1>
-        <button onClick={addReminderClicked}>
-          <FaPlus />
-        </button>
+        {name === 'All' || name === undefined || (
+          <button onClick={addReminderClicked}>
+            <FaPlus />
+          </button>
+        )}
       </div>
       <ul>
         {items.length === 0 && !isAddingReminder && (
           <h4>Add Reminders To List</h4>
         )}
-        {items.map((item, index) => {
+        {items.map(item => {
           return (
             <SingleReminder
-              key={index}
+              key={item.id}
+              name={name}
               item={item}
-              removeReminder={index => removeReminder(index)}
+              removeReminder={() => removeReminder(item.id)}
             />
           );
         })}
@@ -45,6 +49,14 @@ const Reminders = ({
           </form>
         )}
       </ul>
+      {name === 'Work' ||
+        name === 'All' ||
+        name === 'Home' ||
+        name === undefined || (
+          <button className='delete-list' onClick={deleteList}>
+            Delete list
+          </button>
+        )}
     </main>
   );
 };

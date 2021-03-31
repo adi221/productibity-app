@@ -102,12 +102,14 @@ a {
   border: 1px solid #bcece0;
 }
 
-.new-list__button {
+.new-list__button svg {
   position: absolute;
-  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 }
 
 .new-list__button svg {
@@ -122,6 +124,7 @@ a {
   min-height: 500px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  position: relative;
 }
 
 .reminders-header {
@@ -176,4 +179,30 @@ h4 {
 
 .new-reminder input:focus-within {
   border: 1px solid #bcece0;
+}
+
+/* Delete List Btn */
+
+.delete-list {
+  color: #666;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  transition: all 0.3s linear;
+}
+
+.delete-list:hover {
+  color: rgb(44, 44, 44);
+}
+
+/* Category reminder */
+
+.category-reminder {
+  margin-left: 10px;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  color: #666;
+  text-transform: capitalize;
+  padding: 3px 6px;
 }

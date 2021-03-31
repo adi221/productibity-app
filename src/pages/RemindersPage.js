@@ -11,18 +11,24 @@ const getLocalStorage = () => {
     // Some boilerplate reminders
     return {
       All: [
-        'Clean the house',
-        'Review Coding',
-        'Do some sports',
-        'Cook food',
-        'Go to hospital',
+        { name: 'Clean the house', id: 'home0' },
+        { name: 'Review Coding', id: 'work0' },
+        { name: 'Do some sports', id: 'work1' },
+        { name: 'Cook food', id: 'home1' },
       ],
-      Work: ['Review Coding', 'Do some sports'],
-      Home: ['Clean the house', 'Cook food'],
-      Volunteering: ['Go to hospital'],
+      Work: [
+        { name: 'Review Coding', id: 'work0' },
+        { name: 'Do some sports', id: 'work1' },
+      ],
+      Home: [
+        { name: 'Clean the house', id: 'home0' },
+        { name: 'Cook food', id: 'home1' },
+      ],
     };
   }
 };
+
+localStorage.clear();
 
 const RemindersPage = () => {
   const { id } = useParams();
@@ -35,8 +41,14 @@ const RemindersPage = () => {
 
   const remindersList = Object.keys(lists);
   const reminders = id ? lists[id] : lists['All'];
+  let allReminders = Object.values(lists)
+    .slice(1)
+    .reduce((acc, reminderList) => acc.concat(reminderList), []);
+  lists['All'] = allReminders;
+  // localStorage.clear();
 
   const createList = e => {
+    if (newListName.trim() === '') return;
     e.preventDefault();
     setLists({ ...lists, [newListName]: [] });
     history.push(`/${newListName}`);
@@ -45,19 +57,38 @@ const RemindersPage = () => {
   };
 
   const createReminder = e => {
+    if (newReminderName.trim() === '') return;
     e.preventDefault();
     setLists({
       ...lists,
-      [id]: [...lists[id], newReminderName],
-      All: [...lists['All'], newReminderName],
+      [id]: [
+        ...lists[id],
+        { name: newReminderName, id: `${id.toLowerCase()}${lists[id].length}` },
+      ],
     });
     setNewReminderName('');
     setIsAddingReminder(false);
   };
 
-  const removeReminder = id => {
-    console.log('Add', id);
+  const removeReminder = reminderId => {
+    let reminderList = reminderId.replace(/[0-9]/g, '');
+    reminderList = reminderList.charAt(0).toUpperCase() + reminderList.slice(1);
+    let newList = lists[reminderList].filter(
+      reminder => reminder.id !== reminderId
+    );
+    setLists({ ...lists, [reminderList]: newList });
   };
+
+  const deleteList = () => {
+    delete lists[id];
+    history.push('/');
+  };
+
+  useEffect(() => {
+    lists['All'] = allReminders;
+    // localStorage.setItem('reminders', JSON.stringify(lists));
+    //eslint-disable-next-line
+  }, [lists]);
 
   useEffect(() => {
     localStorage.setItem('reminders', JSON.stringify(lists));
@@ -82,6 +113,7 @@ const RemindersPage = () => {
         changeName={e => setNewReminderName(e.target.value)}
         newReminderName={newReminderName}
         removeReminder={id => removeReminder(id)}
+        deleteList={deleteList}
       />
     </div>
   );
